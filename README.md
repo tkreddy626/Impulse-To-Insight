@@ -13,4 +13,8 @@ process, it acts as a time-saver and boosts productivity, thereby easing the man
 huge volumes of audio information for businesses, academics, and media professionals. Built
 for fast processing and efficient access to information, our system represents an improvement
 in speech processing technology.
+
+
+
+
 Keywords: Automatic Speech Recognition (ASR), Speaker Diarization, Natural Language Processing (NLP), Speech-to-Text, Summarization, NLTK
