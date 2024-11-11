@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.png') }}" type="">
+
+  <title> Impluse To Insight </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet" />
+
+  <style>
+    .upload_section {
+      text-align: center;
+      padding: 50px 0;
+      background-color: #00204a;
+      color: #ffffff;
+    }
+
+    .upload_section .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .upload_section h2 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 50px;
+    }
+
+    .upload_section input[type="file"] {
+      display: none;
+    }
+
+    .upload_section textarea {
+      width: 100%;
+      height: 250px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 16px;
+      font-style: italic;
+      resize: none;
+      background-color: #004080;
+      background-image: url('{{ url_for("static", filename="images/about.png") }}');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .upload_section textarea[readonly] {
+      background-color: #003060;
+      cursor: default;
+    }
+
+    .upload_section button {
+      margin: 10px;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      border-color: #0056b3;
+      border-radius: 5px;
+      background-color: #0056b3;
+      color: white;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .upload_section button:hover {
+      background-color: #004080;
+      transform: scale(1.05);
+    }
+
+    .copy-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #007bff;
+    }
+
+    .copy-btn:hover {
+      color: #0056b3;
+    }
+
+    .textarea-wrapper {
+      margin-bottom: 20px;
+    }
+    .textarea-wrapper p{
+      padding: 10px 20px;
+      user-select: text;
+      pointer-events: none;
+    }
+    .custom-file-upload {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #0056b3;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .custom-file-upload:hover {
+      background-color: #004080;
+      transform: scale(1.05);
+    }
+
+    #copyNotification {
+      display: none;
+      color: #00bbf0;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="{{ url_for('home') }}">
+            <span>
+              Impulse to Insight
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse mx-5" id="navbarSupportedContent">
+            <ul class="navbar-nav ">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('upload') }}">Upload</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('team') }}">Squad</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <!-- upload section -->
+    <section class="upload_section">
+      <div class="container">
+        <h2>Upload Audio And Summarize</h2>
+        
+        <form id="uploadForm" action="/pred" method="post" enctype="multipart/form-data">
+          <label for="audioInput" class="custom-file-upload">Choose File</label>
+          <input type="file" name="audio_file" id="audioInput" accept="audio/*" onchange="displayFileName()">
+          <span id="fileName" style="margin-left: 10px; color: #00bbf0;"></span>
+          <br>
+          
+          <button type="submit">Transcribe</button>
+        </form>
+  
+        <div class="textarea-wrapper" id="transcriptionSection">
+          <textarea id="transcriptionTextarea" rows="20" cols="50" readonly></textarea>
+        </div>
+        <form id="summarizeForm" action="/summarize" method="post">
+          <button type="submit">Summarize</button>
+        </form>
+        <div class="textarea-wrapper" id="summarySection">
+          <textarea id="summaryTextarea" rows="20" cols="50" readonly></textarea>
+        </div>
+      </div>
+    </section>
+  
+    <script>
+      function displayFileName() {
+        const fileInput = document.getElementById('audioInput');
+        const fileName = fileInput.files[0] ? fileInput.files[0].name : '';
+        document.getElementById('fileName').innerText = fileName;
+      }
+  
+      document.addEventListener("DOMContentLoaded", function() {
+        const transcription = "{{ transcription|safe }}";
+        const summary = "{{ summary|safe }}";
+        const message = "{{message}}"
+  
+        if (transcription) {
+          document.getElementById('transcriptionTextarea').value = transcription;
+          document.getElementById('transcriptionSection').style.display = 'block';
+        }
+        else{
+          document.getElementById('transcriptionTextarea').value = message;
+          document.getElementById('transcriptionSection').style.display = 'block';
+        }
+        
+        if (summary) {
+          document.getElementById('summaryTextarea').value = summary;
+          document.getElementById('summarySection').style.display = 'block';
+        }
+        else{
+          document.getElementById('summaryTextarea').value = message;
+          document.getElementById('summarySection').style.display = 'block';
+        }
+      });
+    </script>
+    
+    <!-- footer section -->
+    <section class="footer_section">
+      <div class="container">
+        <p>&copy; <span id="displayYear"></span> All Rights Reserved By <a href="{{ url_for('team') }}">Impulse To Insight Team</a></p>
+      </div>
+    </section>
+    <!-- footer section -->
+  </div>
+
+  <!-- jQery -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+</body>
+</html>
+  
