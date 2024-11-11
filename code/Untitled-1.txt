@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> Impulse To Insight </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet" />
+
+  <style>
+    .upload_section {
+      text-align: center;
+      padding: 30px 0;
+      background-color: #00204a;
+      color: #ffffff;
+    }
+
+    .upload_section .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .upload_section h2 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 50px;
+    }
+
+    .upload_section input[type="file"] {
+      display: none;
+    }
+
+    .upload_section textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 16px;
+      font-style: italic;
+      resize: none;
+      color: #ffffff;
+      background-image: url('{{url_for("static",filename = "images/about.png")}}');
+      background-size: cover;
+      background-color: #00204a;
+      background-position: center;
+    }
+
+    .upload_section textarea[readonly] {
+      background-color: #003060;
+      cursor: default;
+      border-color: #003060;
+    }
+
+    .upload_section button {
+      margin: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      border-color: #0056b3;
+      border-radius: 5px;
+      background-color: #004080;
+      color: white;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .upload_section button:hover {
+      background-color: #004080;
+      transform: scale(1.05);
+    }
+
+    .copy-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #00bbf0;
+    }
+
+    .copy-btn title {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #00bbf0;
+    }
+
+    .copy-btn:hover {
+      color: #00bbf0;
+    }
+
+    .textarea-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .custom-file-upload {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #004080;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .custom-file-upload:hover {
+      background-color: #004080;
+      transform: scale(1.05);
+    }
+
+    #copyNotification {
+      display: none;
+      color: #00bbf0;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .upload_section {
+        padding: 30px 20px;
+      }
+
+      .upload_section h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+    }
+
+    .summary-wrapper {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .text-wrapper {
+      margin-bottom: 40px;
+    }
+
+    .textarea-wrapper {
+      position: relative;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      resize: none;
+    }
+
+    .textarea-image {
+      display: none;
+    }
+
+    /* Loading Spinner */
+@keyframes double-bounce {
+  0%, 100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+
+  /* Loading Spinner */
+    .loading-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      z-index: 10;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    .loading-container {
+      position: relative;
+    }
+
+    .loading-hidden {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="{{ url_for('home') }}">
+            <span>
+              Impulse to Insight
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse mx-5" id="navbarSupportedContent">
+            <ul class="navbar-nav ">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('upload') }}">Upload</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('team') }}">Squad</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <!-- upload section -->
+    <section class="upload_section">
+      <div class="container">
+        <h2>Upload Audio And Summarize</h2>
+
+        <label for="audioInput" class="custom-file-upload">Upload Audio File</label>
+        <input type="file" id="audioInput" accept="audio/*" onchange="displayFileName()">
+        <span id="fileName" style="margin-left: 10px; color: #00bbf0;"></span>
+        <br>
+        <div class="text-wrapper">
+          <button onclick="uploadAudio()">Transcribe</button>
+        </div>
+        <div class="textarea-wrapper loading-container">
+          <div class="loading-spinner loading-hidden" id="transcribeSpinner"></div>
+          <textarea id="outputText" style="font-weight: 1000;" placeholder="Transcribed text will appear here..."
+            readonly></textarea>
+          <i class="fa-regular fa-copy copy-btn" onclick="copyToClipboard('outputText')" title="Copy to clipboard"></i>
+        </div>
+
+        <div class="summary-wrapper">
+          <button onclick="summarizeText()">Summarize</button>
+        </div>
+        <div class="textarea-wrapper loading-container">
+          <div class="loading-spinner loading-hidden" id="summarizeSpinner"></div>
+          <textarea id="summaryText" style="font-weight: 1000;" placeholder="Summary will appear here..."
+            readonly></textarea>
+          <i class="fa-regular fa-copy copy-btn" onclick="copyToClipboard('summaryText')" title="Copy to clipboard"></i>
+        </div>
+
+        <div id="copyNotification">Copied to clipboard!</div>
+      </div>
+    </section>
+
+    <!-- end upload section -->
+
+    <script>
+      function displayFileName() {
+        const fileInput = document.getElementById('audioInput');
+        const fileNameSpan = document.getElementById('fileName');
+        fileNameSpan.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : '';
+      }
+
+      function uploadAudio() {
+        const fileInput = document.getElementById('audioInput');
+        const outputText = document.getElementById('outputText');
+        const transcribeSpinner = document.getElementById('transcribeSpinner');
+
+        if (fileInput.files.length === 0) {
+          alert('Please select an audio file.');
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('audioFile', fileInput.files[0]);
+
+        transcribeSpinner.classList.remove('loading-hidden');
+
+        fetch('/transcribe', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            transcribeSpinner.classList.add('loading-hidden');
+            if (data.error) {
+              outputText.value = 'Error: ' + data.error;
+            } else {
+              outputText.value = data.transcript;
+            }
+          })
+          .catch(error => {
+            transcribeSpinner.classList.add('loading-hidden');
+            console.error('Error:', error);
+            outputText.value = 'An error occurred while transcribing.';
+          });
+      }
+
+      function summarizeText() {
+        const fileInput = document.getElementById('audioInput');
+        const summaryText = document.getElementById('summaryText');
+        const summarizeSpinner = document.getElementById('summarizeSpinner');
+
+        if (fileInput.files.length === 0) {
+          alert('Please select an audio file.');
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('audioFile', fileInput.files[0]);
+
+        summarizeSpinner.classList.remove('loading-hidden');
+
+        fetch('/summarize', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            summarizeSpinner.classList.add('loading-hidden');
+            if (data.error) {
+              summaryText.value = 'Error: ' + data.error;
+            } else {
+              summaryText.value = data.summary;
+            }
+          })
+          .catch(error => {
+            summarizeSpinner.classList.add('loading-hidden');
+            console.error('Error:', error);
+            summaryText.value = 'An error occurred while summarizing.';
+          });
+      }
+
+      function copyToClipboard(elementId) {
+        const copyText = document.getElementById(elementId);
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");
+
+        const copyNotification = document.getElementById('copyNotification');
+        copyNotification.style.display = 'block';
+        setTimeout(() => {
+          copyNotification.style.display = 'none';
+        }, 2000);
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+      integrity="sha384-eMN3e8jMb5xWwFMC5pbqG9ih/7vORj3PpaXtkghpQ1qVZ7PhUE1W5yQxJ3w8dMxd" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.1/js/bootstrap.min.js"
+      integrity="sha384-pL6BwyQzC2kB6P1XKIDHl9Tm3Iv2Y5n5zHCP7ME68ETh/e23lCEnzMQYf74sdF7W" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
